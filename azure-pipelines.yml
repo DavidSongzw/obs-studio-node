@@ -18,8 +18,8 @@ variables:
 
 jobs:
 - job: 'WindowsRelease'
-    pool:
-      vmImage: 'windows-2019'
+  pool:
+    vmImage: 'windows-2019'
   workspace:
     clean: all
   variables:
