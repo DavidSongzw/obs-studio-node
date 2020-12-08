@@ -124,15 +124,7 @@ jobs:
     displayName: 'Upload obs-client pdbs'
     condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
 
-  - task: S3Upload@1
-    inputs:
-      awsCredentials: 'Streamlabs AWS'
-      regionName: 'us-west-2'
-      bucketName: 'obsstudionodes3.streamlabs.com'
-      globExpressions: '$(tagartifact)-release-win64.tar.gz'
-      filesAcl: 'public-read'
-    displayName: 'Upload tag artifact to S3'
-    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
+
 
 - job: 'WindowsDebug'
   pool: 'Default'
@@ -210,15 +202,6 @@ jobs:
     displayName: 'Publish tag artifact'
     condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
 
-  - task: S3Upload@1
-    inputs:
-      awsCredentials: 'Streamlabs AWS'
-      regionName: 'us-west-2'
-      bucketName: 'obsstudionodes3.streamlabs.com'
-      globExpressions: '$(tagartifact)-debug-win64.tar.gz'
-      filesAcl: 'public-read'
-    displayName: 'Upload tag artifact to S3'
-    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
 
 - job: 'MacOSX'
   pool:
@@ -300,12 +283,3 @@ jobs:
     displayName: 'Publish tag artifact'
     condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
 
-  - task: S3Upload@1
-    inputs:
-      awsCredentials: 'Streamlabs AWS'
-      regionName: 'us-west-2'
-      bucketName: 'obsstudionodes3.streamlabs.com'
-      globExpressions: '$(tagartifact)-$(ReleaseName)-osx.tar.gz'
-      filesAcl: 'public-read'
-    displayName: 'Upload tag artifact to S3'
-    condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'tags'))
