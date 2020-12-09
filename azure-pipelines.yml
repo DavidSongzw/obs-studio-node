@@ -93,8 +93,7 @@ jobs:
       artifact: '$(tagartifact)-release-win64.tar.gz'
       path: $(Build.SourcesDirectory)/bin
 
-# Download GitHub Release
-# Downloads a GitHub Release from a repository
+
   - task: DownloadGitHubRelease@0
     inputs:
       connection: 'DavidSongzw'
